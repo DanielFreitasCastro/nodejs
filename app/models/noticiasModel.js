@@ -8,6 +8,10 @@ module.exports = function () {
         connection.query('select * from noticias where id_noticia = 1', callback);
     };
 
+    this.saveNoticia = function(connection, callback, noticia){
+        connection.query('insert into noticias set ?', noticia, callback);
+    };
+
     return this;
 
 };
