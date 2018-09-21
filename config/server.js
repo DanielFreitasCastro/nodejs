@@ -1,6 +1,7 @@
 var app = require('express')();
 var consign = require("consign")();
 var bodyParser = require("body-parser");
+var expressValidator = require("express-validator")();
 
 /**
  * Views
@@ -13,6 +14,8 @@ app.use(
         extended: true
     })
 );
+
+app.use(expressValidator);
 
 consign
     //Routes
