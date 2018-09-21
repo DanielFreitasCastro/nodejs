@@ -1,6 +1,8 @@
-var app = require("./config/server");
+// Importar configurações do servidor
+var app = require('./config/server');
 
-app.listen(3000, function () {
-    console.log("Está OK!");
+// Parametrizar a porta de escuta
+app.listen(90, function () {
+    console.log("Servidor ONLINE");
 });
 

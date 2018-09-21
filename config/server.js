@@ -1,34 +1,39 @@
+//Importar express
 var express = require('express');
+
+//Importar consign
+var consign = require('consign')();
+
+//Importar body-parser
+var parser = require('body-parser');
+
+//Importar express validator
+var validator = require('express-validator');
+
+//Iniciar Express
 var app = express();
-var consign = require("consign")();
-var bodyParser = require("body-parser");
-var expressValidator = require("express-validator")();
 
-/**
- * Views
- */
-app.set('view engine', 'ejs');
-app.set('views', './app/views');
+//Setar View Engine e View do Express
+app.set("view engine", 'ejs');
+app.set("views", "./app/views");
 
-app.use(express.static('./app/public/'));
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
+//Configurar o middleware express.static
+app.use(express.static("./app/public"));
 
-app.use(expressValidator);
+//Configurar o middleware body-parser
+app.use(parser.urlencoded({ extended: true }));
+
+//Configurar o middleware express-validator
+app.use(validator());
 
 consign
-    //Routes
-    .include('app/routes')
-    //DB Connetion
-    .then('config/dbConnection.js')
+    //Rotas
+    .include("app/routes")
     //Models
-    .then('app/models')
+    .include("app/models")
     //Controllers
-    .then('app/controllers')
-
+    .include("app/controllers")
     .into(app);
 
+//Exportar App
 module.exports = app;
