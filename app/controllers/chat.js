@@ -12,9 +12,12 @@ module.exports.iniciaChat = function (application, req, res) {
         return;
     }
 
-    res.render("chat");
-    application.get("io").emit('msgClient', {
+    res.render("chat", {
+        dados: dados  
+    });
+
+    application.get("io").emit('msg-entrou', {
         apelido: dados.user,
-        msg: "usuário entrou!"
+        msg: "Entrou!"
     });
 };
